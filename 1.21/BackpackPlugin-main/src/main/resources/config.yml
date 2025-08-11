@@ -1,0 +1,4 @@
+backpack:
+  default-size: 27
+  max-backpacks: 3
+  title: "&6Your Backpack %number%"

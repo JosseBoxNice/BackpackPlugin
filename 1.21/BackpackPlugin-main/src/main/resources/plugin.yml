@@ -1,0 +1,60 @@
+name: Backpack
+main: com.joosua.backpack.BackpackPlugin
+version: 1.1
+api-version: 1.19
+author: joosua
+
+commands:
+  backpack:
+    description: Opens a backpack
+    usage: /backpack [number]
+    permission: backpack.use
+
+  backpacktitle:
+    description: Renames a backpack
+    usage: /backpacktitle <number> <title>
+    permission: backpack.rename
+
+permissions:
+  backpack.use:
+    description: Allows the player to use backpacks
+    default: false
+  backpack.rename:
+    description: Allows the player to rename their backpacks
+    default: false
+  backpack.color:
+    description: Allows the player to use color codes (&) in backpack titles
+    default: false
+  backpack.max.1:
+    description: Allows 1 backpack
+    default: false
+  backpack.max.2:
+    description: Allows 2 backpacks
+    default: false
+  backpack.max.3:
+    description: Allows 3 backpacks
+    default: false
+  backpack.max.5:
+    description: Allows 5 backpacks
+    default: false
+  backpack.max.10:
+    description: Allows 10 backpacks
+    default: false
+  backpack.size.9:
+    description: 9 slot backpacks
+    default: false
+  backpack.size.18:
+    description: 18 slot backpacks
+    default: false
+  backpack.size.27:
+    description: 27 slot backpacks
+    default: false
+  backpack.size.36:
+    description: 36 slot backpacks
+    default: false
+  backpack.size.45:
+    description: 45 slot backpacks
+    default: false
+  backpack.size.54:
+    description: 54 slot backpacks
+    default: false

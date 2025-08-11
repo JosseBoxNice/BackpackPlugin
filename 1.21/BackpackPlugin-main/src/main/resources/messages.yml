@@ -1,0 +1,4 @@
+only-players: "&cOnly players can use this command!"
+opened-backpack: "&aOpened Backpack #%number%!"
+invalid-number: "&cInvalid backpack number!"
+no-permission: "&cYou don't have permission for this backpack!"

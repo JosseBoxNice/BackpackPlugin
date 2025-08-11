@@ -1,0 +1,39 @@
+BackpackPlugin License Agreement
+
+Copyright © 2025 Joosua Virtanen
+
+This software ("BackpackPlugin") is licensed, not sold. By purchasing, downloading, or using BackpackPlugin, you agree to the following terms:
+
+1. License Grant
+You are granted a non-exclusive, non-transferable license to use BackpackPlugin on servers you own or manage.
+
+You may install the plugin on [1 / configurable number] server(s) per purchase unless otherwise agreed.
+
+2. Restrictions
+You may not:
+
+Distribute, share, resell, or give the plugin to others.
+
+Decompile, modify, or create derivative works of the plugin without written permission.
+
+Claim ownership of the plugin or its code.
+
+3. Updates and Support
+Updates are provided at the developer's discretion.
+
+Basic support is provided for valid license holders.
+
+Feature requests or major updates may require additional payment.
+
+4. Refund Policy
+Refunds are not guaranteed after purchase unless required by your platform’s policy (e.g., SpigotMC or Polymart rules).
+
+5. Liability
+The plugin is provided "as is", without warranty of any kind.
+
+The developer is not responsible for any damages, data loss, or server issues caused by the plugin.
+
+6. Termination
+Your license will be revoked if you breach this agreement.
+
+Unauthorized distribution or resale may result in DMCA action.
