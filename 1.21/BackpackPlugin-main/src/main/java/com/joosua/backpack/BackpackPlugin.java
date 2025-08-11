@@ -6,6 +6,7 @@ import com.joosua.backpack.listeners.InventoryListener;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,7 +19,10 @@ public class BackpackPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        saveResource("messages.yml", false);
+        File file = new File(getDataFolder(), "messages.yml");
+        if (!file.exists()) {
+            saveResource("messages.yml", false);
+        }
 
         backpackManager = new BackpackManager(this);
 
