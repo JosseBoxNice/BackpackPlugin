@@ -1,10 +1,13 @@
-package com.joosua.backpack;
+package com.joosua.backpack.managers;
 
+import com.joosua.backpack.BackpackPlugin;
+import com.joosua.backpack.InventoryUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -167,6 +170,32 @@ public class BackpackManager {
             plugin.getLogger().severe("Failed to save custom title for backpack " + number + " of " + uuid);
         }
     }
+
+    /** Calculates the max backpacks a player can have based on permissions */
+    public int getPlayerMaxBackpacks(Player player, int defaultMax) {
+        int max = defaultMax;
+
+        // Loop through all permissions the player has
+        for (PermissionAttachmentInfo permInfo : player.getEffectivePermissions()) {
+            String perm = permInfo.getPermission().toLowerCase();
+
+            if (perm.startsWith("backpack.max.")) {
+                String numberPart = perm.substring("backpack.max.".length());
+
+                try {
+                    int value = Integer.parseInt(numberPart);
+                    if (value > max) {
+                        max = value; // Keep the highest number found
+                    }
+                } catch (NumberFormatException ignored) {
+                    // Ignore invalid numbers like backpack.max.abc
+                }
+            }
+        }
+
+        return max;
+    }
+
 
     public void clearCache(UUID uuid) {
         contentsCache.remove(uuid);

@@ -4,13 +4,23 @@ version: 1.1
 api-version: 1.19
 author: joosua
 
+softdepend:
+  - PlaceholderAPI
+
 commands:
   backpack:
     description: Opens a backpack
     usage: /backpack [number]
     permission: backpack.use
-
-  backpacktitle:
+  backpack-reload:
+    description: Reloads Plugin's configuration
+    usage: /backpackreload
+    permission: backpack.reload
+  permissions:
+    backpackPlugin.reload:
+    description: Allows reloading the plugin
+    default: op
+  backpack-title:
     description: Renames a backpack
     usage: /backpacktitle <number> <title>
     permission: backpack.rename
@@ -24,21 +34,6 @@ permissions:
     default: false
   backpack.color:
     description: Allows the player to use color codes (&) in backpack titles
-    default: false
-  backpack.max.1:
-    description: Allows 1 backpack
-    default: false
-  backpack.max.2:
-    description: Allows 2 backpacks
-    default: false
-  backpack.max.3:
-    description: Allows 3 backpacks
-    default: false
-  backpack.max.5:
-    description: Allows 5 backpacks
-    default: false
-  backpack.max.10:
-    description: Allows 10 backpacks
     default: false
   backpack.size.9:
     description: 9 slot backpacks

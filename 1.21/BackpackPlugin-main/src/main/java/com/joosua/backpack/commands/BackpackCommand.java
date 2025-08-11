@@ -29,7 +29,7 @@ public class BackpackCommand implements CommandExecutor {
         }
 
         int globalMax = plugin.getConfig().getInt("backpack.max-backpacks", 3);
-        int playerMax = getPlayerMaxBackpacks(player, globalMax);
+        int playerMax = plugin.getBackpackManager().getPlayerMaxBackpacks(player, globalMax);
 
         int number = 1;
         if (args.length > 0) {
@@ -58,14 +58,4 @@ public class BackpackCommand implements CommandExecutor {
         return true;
     }
 
-    /** Calculates the max backpacks a player can have based on permissions */
-    private int getPlayerMaxBackpacks(Player player, int defaultMax) {
-        int max = 0;
-        for (int i = 1; i <= 100; i++) {
-            if (player.hasPermission("backpack.max." + i)) {
-                max = i;
-            }
-        }
-        return (max > 0) ? max : defaultMax;
-    }
 }

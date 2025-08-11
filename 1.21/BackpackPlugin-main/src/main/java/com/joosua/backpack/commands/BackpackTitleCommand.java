@@ -1,6 +1,6 @@
 package com.joosua.backpack.commands;
 
-import com.joosua.backpack.BackpackManager;
+import com.joosua.backpack.managers.BackpackManager;
 import com.joosua.backpack.BackpackPlugin;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

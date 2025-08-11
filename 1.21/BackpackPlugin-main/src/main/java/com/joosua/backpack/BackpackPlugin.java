@@ -1,8 +1,12 @@
 package com.joosua.backpack;
 
 import com.joosua.backpack.commands.BackpackCommand;
+import com.joosua.backpack.commands.BackpackReloadCommand;
 import com.joosua.backpack.commands.BackpackTitleCommand;
 import com.joosua.backpack.listeners.InventoryListener;
+import com.joosua.backpack.managers.BackpackManager;
+import com.joosua.backpack.managers.PlaceholderAPIManager;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +18,7 @@ import java.util.UUID;
 public class BackpackPlugin extends JavaPlugin {
 
     private BackpackManager backpackManager;
+    private PlaceholderAPIManager placeholderAPIManager;
     private final Map<UUID, Integer> openBackpacks = new HashMap<>();
 
     @Override
@@ -24,14 +29,20 @@ public class BackpackPlugin extends JavaPlugin {
             saveResource("messages.yml", false);
         }
 
+        this.placeholderAPIManager = new PlaceholderAPIManager(this);
+
         backpackManager = new BackpackManager(this);
 
         if (getCommand("backpack") != null) {
             getCommand("backpack").setExecutor(new BackpackCommand(this));
         }
 
-        if (getCommand("backpacktitle") != null) {
-            getCommand("backpacktitle").setExecutor(new BackpackTitleCommand(this));
+        if (getCommand("backpack-title") != null) {
+            getCommand("backpack-title").setExecutor(new BackpackTitleCommand(this));
+        }
+
+        if (getCommand("backpack-reload") != null) {
+            getCommand("backpack-reload").setExecutor(new BackpackReloadCommand(this));
         }
 
         getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
@@ -41,6 +52,12 @@ public class BackpackPlugin extends JavaPlugin {
         }
 
         getLogger().info("Backpack plugin enabled!");
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new PluginExpansion(this).register();
+        } else {
+            getLogger().warning("PlaceholderAPI not found! Placeholders will not work.");
+        }
     }
 
     @Override
@@ -58,5 +75,8 @@ public class BackpackPlugin extends JavaPlugin {
 
     public BackpackManager getBackpackManager() {
         return backpackManager;
+    }
+    public PlaceholderAPIManager getPlaceholderAPIManager() {
+        return placeholderAPIManager;
     }
 }
