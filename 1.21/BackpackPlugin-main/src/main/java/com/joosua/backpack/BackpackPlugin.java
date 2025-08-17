@@ -1,9 +1,9 @@
 package com.joosua.backpack;
 
 import com.joosua.backpack.commands.BackpackCommand;
-import com.joosua.backpack.commands.BackpackReloadCommand;
-import com.joosua.backpack.commands.BackpackTitleCommand;
-import com.joosua.backpack.listeners.InventoryListener;
+import com.joosua.backpack.commands.BackpackTabCompleter;
+import com.joosua.backpack.listeners.InventoryListener1_21;
+import com.joosua.backpack.listeners.InventoryListener1_20;
 import com.joosua.backpack.managers.BackpackManager;
 import com.joosua.backpack.managers.PlaceholderAPIManager;
 import org.bukkit.Bukkit;
@@ -35,17 +35,16 @@ public class BackpackPlugin extends JavaPlugin {
 
         if (getCommand("backpack") != null) {
             getCommand("backpack").setExecutor(new BackpackCommand(this));
+            getCommand("backpack").setTabCompleter(new BackpackTabCompleter());
+
         }
 
-        if (getCommand("backpack-title") != null) {
-            getCommand("backpack-title").setExecutor(new BackpackTitleCommand(this));
+        String version = Bukkit.getBukkitVersion();
+        if (version.startsWith("1.21")) {
+            getServer().getPluginManager().registerEvents(new InventoryListener1_21(this), this);
+        } else {
+            getServer().getPluginManager().registerEvents(new InventoryListener1_20(this), this);
         }
-
-        if (getCommand("backpack-reload") != null) {
-            getCommand("backpack-reload").setExecutor(new BackpackReloadCommand(this));
-        }
-
-        getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
 
         for (Player player : getServer().getOnlinePlayers()) {
             backpackManager.clearCache(player.getUniqueId());

@@ -6,16 +6,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
 import java.util.UUID;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InventoryListener implements Listener {
+public class InventoryListener1_21 implements Listener {
 
     private final BackpackPlugin plugin;
     // Pattern matches "Backpack" followed by optional '#' and spaces, then captures a number
     private static final Pattern TITLE_PATTERN = Pattern.compile("Backpack\\s*#?\\s*(\\d+)");
 
-    public InventoryListener(BackpackPlugin plugin) {
+    public InventoryListener1_21(BackpackPlugin plugin) {
         this.plugin = plugin;
     }
 
