@@ -13,7 +13,7 @@ public class BackpackTabCompleter implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 
         if (args.length == 1) {
-            return Arrays.asList("title", "plugin");
+            return Arrays.asList("title", "plugin", "view");
         }
 
         if (args[0].equalsIgnoreCase("plugin")) {

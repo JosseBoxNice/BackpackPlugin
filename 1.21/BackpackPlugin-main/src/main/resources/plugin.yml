@@ -14,15 +14,19 @@ commands:
       /backpack <number> - Opens a backpack
       /backpack title <number> <title> - Changes backpacks title
       /backpack plugin reload Reloads Plugin's config
+      /backpack view <username> <number> - View and manage any players backpack
     permission: backpack.use
 
 permissions:
+  backpack.view:
+    description: Allows to view and manage any players backpack
+    default: op
   backpack.plugin.reload:
     description: Allows reloading the plugin
     default: op
   backpack.use:
     description: Allows the player to use backpacks
-    default: false
+    default: true
   backpack.rename:
     description: Allows the player to rename their backpacks
     default: false

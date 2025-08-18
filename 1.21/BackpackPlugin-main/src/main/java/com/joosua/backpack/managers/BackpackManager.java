@@ -28,6 +28,9 @@ public class BackpackManager {
         UUID uuid = player.getUniqueId();
         int allowedSize = getBackpackSize(player);
 
+        plugin.getConfig().set("backpacksizes." + player.getUniqueId(), allowedSize);
+        plugin.saveConfig();
+
         // Load content
         ItemStack[] contents = getContents(uuid, number);
         ItemStack[] resized = resizeContents(contents, allowedSize);
@@ -47,7 +50,7 @@ public class BackpackManager {
     }
 
     /** Resize items array to fit the current allowed size */
-    private ItemStack[] resizeContents(ItemStack[] original, int allowedSize) {
+    public ItemStack[] resizeContents(ItemStack[] original, int allowedSize) {
         if (original == null) return new ItemStack[allowedSize];
         ItemStack[] resized = new ItemStack[allowedSize];
         Arrays.fill(resized, null);
@@ -56,7 +59,7 @@ public class BackpackManager {
     }
 
     /** Load or cache contents */
-    private ItemStack[] getContents(UUID uuid, int number) {
+    public ItemStack[] getContents(UUID uuid, int number) {
         contentsCache.putIfAbsent(uuid, new HashMap<>());
         Map<Integer, ItemStack[]> playerData = contentsCache.get(uuid);
 
@@ -67,7 +70,7 @@ public class BackpackManager {
         return loaded;
     }
 
-    private void cacheContents(UUID uuid, int number, ItemStack[] contents) {
+    public void cacheContents(UUID uuid, int number, ItemStack[] contents) {
         contentsCache.putIfAbsent(uuid, new HashMap<>());
         contentsCache.get(uuid).put(number, contents);
     }
@@ -132,6 +135,7 @@ public class BackpackManager {
                 maxSize = size;
             }
         }
+
         return (maxSize > 0) ? maxSize : defaultSize;
     }
 

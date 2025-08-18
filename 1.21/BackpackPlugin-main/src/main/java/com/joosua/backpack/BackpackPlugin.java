@@ -6,6 +6,7 @@ import com.joosua.backpack.listeners.InventoryListener1_21;
 import com.joosua.backpack.listeners.InventoryListener1_20;
 import com.joosua.backpack.managers.BackpackManager;
 import com.joosua.backpack.managers.PlaceholderAPIManager;
+import com.joosua.backpack.managers.BackpackViewManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +20,7 @@ public class BackpackPlugin extends JavaPlugin {
 
     private BackpackManager backpackManager;
     private PlaceholderAPIManager placeholderAPIManager;
+    private BackpackViewManager backpackViewManager;
     private final Map<UUID, Integer> openBackpacks = new HashMap<>();
 
     @Override
@@ -32,6 +34,7 @@ public class BackpackPlugin extends JavaPlugin {
         this.placeholderAPIManager = new PlaceholderAPIManager(this);
 
         backpackManager = new BackpackManager(this);
+        backpackViewManager = new BackpackViewManager(this);
 
         if (getCommand("backpack") != null) {
             getCommand("backpack").setExecutor(new BackpackCommand(this));
@@ -71,11 +74,13 @@ public class BackpackPlugin extends JavaPlugin {
     public Map<UUID, Integer> getOpenBackpacks() {
         return openBackpacks;
     }
-
     public BackpackManager getBackpackManager() {
         return backpackManager;
     }
     public PlaceholderAPIManager getPlaceholderAPIManager() {
         return placeholderAPIManager;
+    }
+    public BackpackViewManager getBackpackViewManager() {
+        return backpackViewManager;
     }
 }

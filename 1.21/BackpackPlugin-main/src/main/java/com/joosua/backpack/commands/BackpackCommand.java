@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 public class BackpackCommand implements CommandExecutor {
 
@@ -101,6 +102,30 @@ public class BackpackCommand implements CommandExecutor {
                         sender.sendMessage(ChatColor.GREEN + "Backpack plugin configuration reloaded!");
                     } else {
                         sender.sendMessage(ChatColor.YELLOW + "Usage: /backpack plugin reload");
+                    }
+                    return true;
+                case "view":
+                    if (!sender.hasPermission("backpack.view")) {
+                        sender.sendMessage(ChatColor.RED + "you don't have permission to do that!");
+                        return true;
+                    }
+                    if (args.length < 2) {
+                        player.sendMessage(ChatColor.YELLOW + "Usage: /backpack view <username> <number>");
+                        return true;
+                    }
+                    String username = args[1];
+                    int backpackNumber = 1;
+                    try {
+                        backpackNumber = Integer.parseInt(args[2]);
+                    } catch (NumberFormatException ex) {
+                        player.sendMessage(ChatColor.YELLOW + "Usage: /backpack view <username> <number>");
+                        return true;
+                    }
+                    Inventory backpack = plugin.getBackpackViewManager().openBackpack(username, backpackNumber, sender);
+                    if (backpack != null) {
+                        plugin.getOpenBackpacks().put(player.getUniqueId(), backpackNumber); // Track the backpack number
+                        player.openInventory(backpack);
+                        return true;
                     }
                     return true;
                 default:
